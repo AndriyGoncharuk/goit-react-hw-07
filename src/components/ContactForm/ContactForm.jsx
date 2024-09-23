@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addContact, selectContacts } from "../../redux/contactsSlice";
+import { useDispatch } from "react-redux";
+import { addContacts } from "../../redux/contactOps";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { nanoid } from "nanoid";
 import styles from "./ContactForm.module.css";
 
 const validationSchema = Yup.object().shape({
@@ -12,16 +11,17 @@ const validationSchema = Yup.object().shape({
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const nameFieldId = "name-field";
+  const numberFieldId = "number-field";
 
-  const handleSubmit = (values, { resetForm }) => {
-    const { name, number } = values;
-    if (contacts.some((contact) => contact.name === name)) {
-      alert(`${name} is already in contacts`);
-    } else {
-      dispatch(addContact({ id: nanoid(), name, number }));
-      resetForm();
-    }
+  const handleSubmit = (values, actions) => {
+    dispatch(
+      addContacts({
+        name: values.name,
+        number: values.number,
+      })
+    );
+    actions.resetForm();
   };
 
   return (
@@ -31,16 +31,26 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
     >
       <Form className={styles.form}>
-        <label className={styles.label} htmlFor="name">
+        <label className={styles.label} htmlFor={nameFieldId}>
           Name
         </label>
-        <Field className={styles.input} name="name" type="text" />
+        <Field
+          className={styles.input}
+          name="name"
+          type="text"
+          id={nameFieldId}
+        />
         <ErrorMessage className={styles.error} name="name" component="div" />
 
-        <label className={styles.label} htmlFor="number">
+        <label className={styles.label} htmlFor={numberFieldId}>
           Number
         </label>
-        <Field className={styles.input} name="number" type="text" />
+        <Field
+          className={styles.input}
+          name="number"
+          type="text"
+          id={numberFieldId}
+        />
         <ErrorMessage className={styles.error} name="number" component="div" />
 
         <button className={styles.button} type="submit">
