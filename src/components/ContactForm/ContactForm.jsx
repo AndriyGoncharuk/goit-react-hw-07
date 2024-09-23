@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addContacts } from "../../redux/contactOps";
+import { addContacts } from "../../redux/contactsOps";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./ContactForm.module.css";

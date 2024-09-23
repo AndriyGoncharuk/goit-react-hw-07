@@ -1,7 +1,7 @@
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { deleteContacts } from "../../../redux/contactOps";
+import { deleteContacts } from "../../../redux/contactsOps";
 import styles from "./Contact.module.css";
 
 const Contact = ({ data: { name, number, id } }) => {
