@@ -24,22 +24,7 @@ const SearchBox = () => {
         onChange={selectNameFilter}
       />
     </div>
-    // <input type="text" onChange={handleChange} placeholder="Search contacts" />
   );
 };
-
-// const SearchBox = ({ value, onChange }) => (
-//   <div className={styles.wrapper}>
-//     <label className={styles.label} htmlFor="filter">
-//       Find contacts by name
-//     </label>
-//     <input
-//       className={styles.input}
-//       type="text"
-//       value={value}
-//       onChange={onChange}
-//     />
-//   </div>
-// );
 
 export default SearchBox;
